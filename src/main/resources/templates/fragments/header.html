@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<th:block th:fragment="header">
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div th:with="nowAt=${#httpServletRequest.requestURI}"
+                 class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" >
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    Bookery
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-dark">오늘의 기록</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">내서재</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">북클럽</a></li>
+                    <li><a th:href="@{/books}" class="nav-link px-2"
+                           th:classappend="${nowAt eq '/books' ? 'link-secondary' : 'link-dark'}">검색</a></li>
+                    <li><a th:href="@{/}" class="nav-link px-2"
+                           th:classappend="${nowAt eq '/news' ? 'link-secondary' : 'link-dark'}">북커리 뉴스</a></li>
+                </ul>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">내 정보</a></li>
+                        <li><a class="dropdown-item" href="#">공지사항</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+</th:block>
+</html>

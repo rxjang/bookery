@@ -1,13 +1,15 @@
 package com.rxjang.bookery.book.service
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.rxjang.bookery.book.api.AladinOpenApi
 import com.rxjang.bookery.book.model.dto.AladinSearchRequest
+import com.rxjang.bookery.book.model.dto.AladinSearchResult
 import com.rxjang.bookery.book.repository.BookRepository
 import com.rxjang.bookery.common.Log
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 @Service
@@ -27,12 +29,19 @@ class BookService (
 
         val call = aladinOpenApi.search(options)
 
-        val response = call.execute()
-        if (response.isSuccessful) {
-            logger.debug("response => {}", response.body())
-        } else { //서버 통신은 성공, 하지만 2xx가 아닌 http status가 반환되었다.
-            throw RuntimeException(response.raw().toString())
-        }
+        call.enqueue(object :Callback<AladinSearchResult> {
+            override fun onResponse(call: Call<AladinSearchResult>, response: Response<AladinSearchResult>) {
+                if (response.isSuccessful) {
+                    logger.debug("response => {}", response.body())
+                    // TODO db insert
+                }
+            }
+
+            override fun onFailure(call: Call<AladinSearchResult>, t: Throwable) {
+                throw RuntimeException(t.toString())
+            }
+        })
+
 
     }
 }
