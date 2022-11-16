@@ -1,4 +1,18 @@
+aws:
+  paramstore:
+    region: 'ap-northeast-2'
+    enabled: true
+    prefix: /config
+    profile-separator: _
+    name: bookery
+
 spring:
+  application:
+    name: bookery
+  config:
+    import: "aws-parameterstore:"
+    activate:
+      on-profile: default
   h2:
     console:
       enabled: true
