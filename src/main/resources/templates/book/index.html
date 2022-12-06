@@ -2,6 +2,63 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 <th:block layout:fragment="content">
-    Booooook
+    <div class="row">
+        <div class="panel panel-default top10 mb-3">
+            <div class="panel-body panel-bg-img">
+                지금 많이 공부하는 책 TOP10<br><small>북커리회원들이 많이 공부하는 책을 살펴보세요</small>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 text-center">
+        <div class="col-md-3 themed-grid-col"></div>
+        <div class="col-md-1">
+            <button id="categoryBtn" class="btn dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 25px;">
+                전체
+            </button>
+            <ul class="dropdown-menu">
+                <li class="dropdownOption dropdown-item">전체</li>
+                <li class="dropdownOption dropdown-item">제목</li>
+                <li class="dropdownOption dropdown-item">저자</li>
+                <li class="dropdownOption dropdown-item">출판사</li>
+            </ul>
+        </div>
+        <div class="col-md-5 themed-grid-col mx-auto">
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="검색 키워드를 입력해 주세요" id="keyword">
+                <span class="input-group-append">
+                <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button" onclick="search()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3 themed-grid-col"></div>
+    </div>
+</th:block>
+<th:block layout:fragment="script-fragment">
+    <script type="text/javascript" th:inline="javascript">
+
+        const dropdownBtn = document.querySelector("#categoryBtn");
+        const optionBtn = document.querySelectorAll(".dropdownOption");
+        optionBtn.forEach(function (item) {
+            item.addEventListener("click", function (e) {
+                // 선택한 값 지정
+                // 지정 값 출력
+                dropdownBtn.textContent = e.currentTarget.textContent.trim();
+                // dropdownBtn.classList.add("selected");
+            });
+        });
+
+        const search = () => {
+            const keyword = document.getElementById('keyword').value;
+            const category = document.getElementById('categoryBtn').textContent;
+
+            console.log(keyword, category);
+        }
+
+
+    </script>
 </th:block>
 </html>

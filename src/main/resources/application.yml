@@ -1,3 +1,7 @@
+bookery:
+  aladin:
+    key: ${aladin.key}
+
 aws:
   paramstore:
     region: 'ap-northeast-2'

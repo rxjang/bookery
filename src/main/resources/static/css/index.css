@@ -1,0 +1,36 @@
+.top10 {
+    cursor: pointer;
+    font-size: 120%;
+    font-weight: 600;
+    color: rgb(37, 54, 41);
+    height: 120px;
+}
+
+.top10 small {
+    font-size: 90%;
+    font-weight: normal;
+    color: #445243;
+}
+.top10 .panel-body {
+    padding: 30px;
+}
+
+.panel{
+    border: 0px;
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+    box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+
+.panel-bg-img{
+    height:120px;
+    border-radius:6px;
+    background-image: url("../imgs/yellow-book2.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #f8f5f8;
+    text-align: center;
+}
+
+.ms-n5 {
+    margin-left: -40px;
+}
